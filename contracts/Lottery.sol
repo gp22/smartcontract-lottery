@@ -14,6 +14,12 @@ error Lottery__UpkeepNotNeeded(
     uint256 lotteryState
 );
 
+/**
+ * @title A sample lottery contract.
+ * @author Paul Garcia
+ * @notice This is for creating an un-tamperable decentralized lottery.
+ * @dev This implements Chainlink VRF V2 and Chainlink Keepers.
+ */
 contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
     // Type declarations
     enum LotteryState {
@@ -42,6 +48,7 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
     event LotteryWinnerRequested(uint256 indexed requestId);
     event WinnerPicked(address indexed winner);
 
+    // Functions
     constructor(
         address vrfCoordinatorV2,
         uint256 entranceFee,
@@ -82,7 +89,6 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
         bytes memory /* checkdata */
     )
         public
-        view
         override
         returns (bool upkeepNeeded, bytes memory /* performData */)
     {
@@ -148,5 +154,25 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
 
     function getRecentWinner() public view returns (address) {
         return s_recentWinner;
+    }
+
+    function getLotteryState() public view returns (LotteryState) {
+        return s_lotteryState;
+    }
+
+    function getNumWords() public pure returns (uint256) {
+        return NUM_WORDS;
+    }
+
+    function getNumberOfPlayers() public view returns (uint256) {
+        return s_players.length;
+    }
+
+    function getLatestTimestamp() public view returns (uint256) {
+        return s_lastTimeStamp;
+    }
+
+    function getRequestConfirmations() public pure returns (uint256) {
+        return REQUEST_CONFIRMATIONS;
     }
 }
