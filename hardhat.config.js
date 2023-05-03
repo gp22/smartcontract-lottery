@@ -40,6 +40,7 @@ module.exports = {
       //   url: MAINNET_RPC_URL
       // }
       chainId: 31337,
+      blockConfirmations: 1,
     },
     localhost: {
       chainId: 31337,
@@ -52,6 +53,7 @@ module.exports = {
       //   },
       saveDeployments: true,
       chainId: 11155111,
+      blockConfirmations: 6,
     },
     mainnet: {
       url: MAINNET_RPC_URL,
