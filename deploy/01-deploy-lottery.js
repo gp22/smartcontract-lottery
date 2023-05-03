@@ -43,7 +43,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
   ]
   const lottery = deploy('Lottery', {
     from: deployer,
-    args: args,
+    args,
     log: true,
     waitConfirmations: network.config.blockConfirmations || 1,
   })
