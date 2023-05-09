@@ -41,7 +41,7 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
     callbackGasLimit,
     interval,
   ]
-  const lottery = deploy('Lottery', {
+  const lottery = await deploy('Lottery', {
     from: deployer,
     args,
     log: true,
